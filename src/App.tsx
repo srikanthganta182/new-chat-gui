@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+          
+            {/*    Session List:
+        1. Should refresh on new session.
+        2. Should refresh on delete session.
+        */}
+
+
+            {/*  Chat List:
+        1. Should refresh on selected session.
+        2. Should refresh on new chat
+        */}
+
+
+            {/*  Chat Form
+        1. Should refresh on text sent => Set to empty
+        */}
+
+        </div>
+    );
 }
 
 export default App;
