@@ -1,5 +1,6 @@
 import React, {FC} from 'react';
-
+import config from "../config";
+import axios from 'axios';
 
 interface CreateSessionProps {
     update: () => void
@@ -7,9 +8,9 @@ interface CreateSessionProps {
 
 const CreateSession: FC<CreateSessionProps> = ({update}) => {
 
-    const createNewSession = () => {
-
-        //     call backend and create a new session
+    const createNewSession = async () => {
+        const url = config.backend.path + 'session/create'
+        await axios.post(url, {customer: config.customer.name});
         update();
     }
 

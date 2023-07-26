@@ -21,23 +21,10 @@ function App() {
     return (
         <div>
             <CreateSession update={renderSessionList}></CreateSession>
-            <SessionList renderOn={sessionListReload} updateCurrentSession={setSessionId}
+            <SessionList renderOn={sessionListReload} updateCurrentSessionId={setSessionId}
                          updateSessionList={renderSessionList}></SessionList>
-            <ChatForm update={renderChatLog} updateTempText={setTempText}></ChatForm>
+            <ChatForm update={renderChatLog} updateTempText={setTempText} sessionId={sessionId}></ChatForm>
             <ChatLog sessionId={sessionId} tempText={tempText} renderOn={chatLogReload}></ChatLog>
-            {sessionId}
-            {/*    Session List:
-        1. Should refresh on new session.
-        2. Should refresh on delete session.
-        */}
-            {/*  Chat List:
-        1. Should refresh on selected session.
-        2. Should refresh on new chat
-        */}
-
-            {/*  Chat Form
-        1. Should refresh on text sent => Set to empty
-        */}
         </div>
     );
 }

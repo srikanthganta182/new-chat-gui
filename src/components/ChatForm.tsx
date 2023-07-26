@@ -1,11 +1,14 @@
 import React, {FC, FormEvent, useState} from 'react';
+import config from "../config";
+import axios from "axios";
 
 interface ChatFormProps {
     update: () => void;
     updateTempText: (tempText: string) => void;
+    sessionId: string;
 }
 
-const ChatForm: FC<ChatFormProps> = ({update, updateTempText}) => {
+const ChatForm: FC<ChatFormProps> = ({update, updateTempText, sessionId}) => {
 
     const [text, setText] = useState("");
     const handleSubmit = async (event: FormEvent) => {
@@ -13,8 +16,8 @@ const ChatForm: FC<ChatFormProps> = ({update, updateTempText}) => {
         updateTempText(text)
         update();
 
-        await new Promise(r => setTimeout(r, 3000));
-
+        const url = config.backend.path + 'session/' + sessionId
+        await axios.post(url, {text: text})
         updateTempText(text + "replyy")
         update();
 
