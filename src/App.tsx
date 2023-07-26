@@ -21,12 +21,17 @@ function App() {
     };
 
     return (
-        <div>
-            <CreateSession update={renderSessionList}></CreateSession>
-            <SessionList sessionListReload={sessionListReload} setSessionId={setSessionId}
-                         renderSessionList={renderSessionList}></SessionList>
-            {sessionId && <ChatForm addToChatLog={addToChatLog} sessionId={sessionId}></ChatForm>}
-            {sessionId && <ChatLog chatLog={chatLog} setChatLog={setChatLog} sessionId={sessionId}></ChatLog>}
+        <div className="big-container">
+            <aside className="sidemenu">
+                <CreateSession update={renderSessionList}></CreateSession>
+                <SessionList sessionListReload={sessionListReload} setSessionId={setSessionId}
+                             renderSessionList={renderSessionList}></SessionList>
+            </aside>
+            <section className="chatbox">
+                {sessionId && <ChatForm addToChatLog={addToChatLog} sessionId={sessionId}></ChatForm>}
+                {sessionId &&
+                    <ChatLog chatLog={chatLog} setChatLog={setChatLog} sessionId={sessionId}></ChatLog>}
+            </section>
         </div>
     );
 }
