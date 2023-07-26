@@ -3,9 +3,9 @@ import config from "../config";
 import axios from "axios";
 
 interface SessionListProps {
-    renderOn: number
-    updateCurrentSessionId: (sessionId: string) => void;
-    updateSessionList: () => void;
+    sessionListReload: number
+    setSessionId: (sessionId: string) => void;
+    renderSessionList: () => void;
 }
 
 interface Session {
@@ -14,9 +14,9 @@ interface Session {
 }
 
 const SessionList: FC<SessionListProps> = ({
-                                               renderOn: sessionListReload,
-                                               updateCurrentSessionId,
-                                               updateSessionList
+                                               sessionListReload: sessionListReload,
+                                               setSessionId,
+                                               renderSessionList
                                            }) => {
 
     const [sessions, setSessions] = useState<Session[]>([]);
@@ -25,6 +25,11 @@ const SessionList: FC<SessionListProps> = ({
         const url = config.backend.path + 'session/customer/' + config.customer.name
         const sessions = (await axios.get<Session[]>(url)).data;
         setSessions(sessions)
+        if (sessions.length > 0) {
+            setSessionId(sessions[0].session_id)
+        } else {
+            setSessionId("")
+        }
     }
 
     useEffect(() => {
@@ -37,13 +42,13 @@ const SessionList: FC<SessionListProps> = ({
         const url = config.backend.path + 'session/' + sessionId
         await axios.delete(url)
         await fetchSessions();
-        updateSessionList();
+        renderSessionList();
     };
     return (
         <div>
             {sessions.map(session =>
                 <div key={session.session_id}>
-                    <button onClick={() => updateCurrentSessionId(session.session_id)}>
+                    <button onClick={() => setSessionId(session.session_id)}>
                         {session.session_name}
                     </button>
                     <button onClick={() => deleteSession(session.session_id)}>

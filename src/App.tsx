@@ -6,25 +6,37 @@ import ChatForm from "./components/ChatForm";
 import ChatLog from "./components/ChatLog";
 
 function App() {
-    const [sessionId, setSessionId] = useState<string>("x");
+    const [sessionId, setSessionId] = useState<string>("");
     const [tempText, setTempText] = useState<string>("");
     const [sessionListReload, setSessionListReload] = useState<number>(0);
-    const [chatLogReload, setChatLogReload] = useState<number>(0);
+    const [chatLogReload, setChatLogReload] = useState<string>("");
 
+    const [chatLogReload1, setChatLogReload1] = useState<number>(0);
+    const [chatLogReload2, setChatLogReload2] = useState<number>(10);
+
+    const renderChatLog1 = () => {
+        console.log("before")
+        setChatLogReload1(chatLogReload1 + 1);
+    };
+
+    const renderChatLog2 = () => {
+        console.log("after")
+        setChatLogReload2(chatLogReload2 + 1);
+    };
     const renderSessionList = () => {
         setSessionListReload(sessionListReload + 1)
-    }
-    const renderChatLog = () => {
-        setChatLogReload(chatLogReload + 1)
     }
 
     return (
         <div>
             <CreateSession update={renderSessionList}></CreateSession>
-            <SessionList renderOn={sessionListReload} updateCurrentSessionId={setSessionId}
-                         updateSessionList={renderSessionList}></SessionList>
-            <ChatForm update={renderChatLog} updateTempText={setTempText} sessionId={sessionId}></ChatForm>
-            <ChatLog sessionId={sessionId} tempText={tempText} renderOn={chatLogReload}></ChatLog>
+            <SessionList sessionListReload={sessionListReload} setSessionId={setSessionId}
+                         renderSessionList={renderSessionList}></SessionList>
+            {sessionId &&
+                <ChatForm renderChatLog1={renderChatLog1} renderChatLog2={renderChatLog2} setTempText={setTempText}
+                          sessionId={sessionId}></ChatForm>}
+            {sessionId && <ChatLog sessionId={sessionId} tempText={tempText} chatLogReload1={chatLogReload1}
+                                   chatLogReload2={chatLogReload2}></ChatLog>}
         </div>
     );
 }

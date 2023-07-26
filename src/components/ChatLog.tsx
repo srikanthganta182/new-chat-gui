@@ -1,9 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
+import config from "../config";
+import axios from "axios";
 
 interface ChatLogProps {
     sessionId: string;
     tempText: string;
-    renderOn: number
+    chatLogReload1: number;
+    chatLogReload2: number;
 }
 
 interface Chat {
@@ -12,22 +15,23 @@ interface Chat {
     isReply: boolean;
 }
 
-const ChatLog: FC<ChatLogProps> = ({sessionId, tempText, renderOn}) => {
+const ChatLog: FC<ChatLogProps> = ({sessionId, tempText, chatLogReload1, chatLogReload2}) => {
+    const [chatLog, setChatLog] = useState<Chat[]>([]);
 
-    const [chatLog, setChatLog] = useState<Chat[]>([{id: "chatId", text: "tempChat1", isReply: true}]);
+    const fetchLogs = async () => {
+        const url = config.backend.path + 'session/' + sessionId;
+        const logs = (await axios.get<Chat[]>(url)).data;
+        console.log(logs);
+        setChatLog(logs);
+    }
+
     useEffect(() => {
-        //fetchChats for sessionId
-        setChatLog([...chatLog, {
-            isReply: false,
-            id: "adssa21" + (Math.random() + 1).toString(36).substring(7),
-            text: tempText
-        }])
-        return () => {
-        };
-    }, [tempText, renderOn]);
+        fetchLogs();
+    }, [chatLogReload1, chatLogReload2]);
 
     return (
         <div>
+            <p>{tempText}</p>
             {chatLog.map(chat => <p key={chat.id}> {chat.text}</p>)}
         </div>
     );
