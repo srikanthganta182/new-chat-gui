@@ -30,6 +30,7 @@ const SessionList: FC<SessionListProps> = ({
         } else {
             setSessionId("")
         }
+        console.log(sessions)
     }
 
     useEffect(() => {

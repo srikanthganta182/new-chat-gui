@@ -5,38 +5,28 @@ import SessionList from "./components/SessionList";
 import ChatForm from "./components/ChatForm";
 import ChatLog from "./components/ChatLog";
 
+// App component
 function App() {
     const [sessionId, setSessionId] = useState<string>("");
     const [tempText, setTempText] = useState<string>("");
     const [sessionListReload, setSessionListReload] = useState<number>(0);
-    const [chatLogReload, setChatLogReload] = useState<string>("");
+    const [chatLog, setChatLog] = useState<Array<{ text: string, isReply: boolean }>>([]);
 
-    const [chatLogReload1, setChatLogReload1] = useState<number>(0);
-    const [chatLogReload2, setChatLogReload2] = useState<number>(10);
-
-    const renderChatLog1 = () => {
-        console.log("before")
-        setChatLogReload1(chatLogReload1 + 1);
+    const addToChatLog = (text: string, isReply: boolean) => {
+        setChatLog(prevChatLog => [...prevChatLog, {text: text, isReply: isReply}]);
     };
 
-    const renderChatLog2 = () => {
-        console.log("after")
-        setChatLogReload2(chatLogReload2 + 1);
-    };
     const renderSessionList = () => {
-        setSessionListReload(sessionListReload + 1)
-    }
+        setSessionListReload(sessionListReload + 1);
+    };
 
     return (
         <div>
             <CreateSession update={renderSessionList}></CreateSession>
             <SessionList sessionListReload={sessionListReload} setSessionId={setSessionId}
                          renderSessionList={renderSessionList}></SessionList>
-            {sessionId &&
-                <ChatForm renderChatLog1={renderChatLog1} renderChatLog2={renderChatLog2} setTempText={setTempText}
-                          sessionId={sessionId}></ChatForm>}
-            {sessionId && <ChatLog sessionId={sessionId} tempText={tempText} chatLogReload1={chatLogReload1}
-                                   chatLogReload2={chatLogReload2}></ChatLog>}
+            {sessionId && <ChatForm addToChatLog={addToChatLog} sessionId={sessionId}></ChatForm>}
+            {sessionId && <ChatLog chatLog={chatLog} setChatLog={setChatLog} sessionId={sessionId}></ChatLog>}
         </div>
     );
 }
