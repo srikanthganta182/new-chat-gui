@@ -16,7 +16,7 @@ const CreateSession: FC<CreateSessionProps> = ({update}) => {
 
     return (
         <div>
-            <button onClick={createNewSession}>CREATE +</button>
+            <button className="side-menu-button" onClick={createNewSession}>CREATE +</button>
         </div>
     );
 };

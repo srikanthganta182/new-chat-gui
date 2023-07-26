@@ -19,9 +19,19 @@
 }
 
 .sidemenu {
-    width: 240px;
+    width: 260px;
     border: 1px solid black;
     background-color: #202123;
+    padding: 10px;
+}
+
+.side-menu-button {
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 100%;
+    background-color: transparent;
+    color: white;
 }
 
 .chatbox {
