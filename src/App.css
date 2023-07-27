@@ -20,19 +20,20 @@
 
 .sidemenu {
     width: 260px;
-    background-color: #202123;
+    background-color: #00B9FF;
     padding: 10px;
 }
 
 .side-menu-button {
     padding: 15px;
-    border: 1px solid gray;
+    border: 2px solid #035EA0;
     border-radius: 5px;
     width: 100%;
     background-color: transparent;
     color: white;
     text-align: left;
     transition: ease 0.25s;
+    font-size: 1.25em;
 }
 
 .side-menu-button:hover {
@@ -52,34 +53,33 @@
     right: 0;
 }
 
-.chat-input-textarea {
-    background-color: #40414f;
-    width: 90%;
-    border-radius: 5px;
-    border: none;
-    margin: 12px;
-    outline: none;
-    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.4);
-    padding: 12px;
-    color: white;
-    font-size: 1.25em;
-}
+/*.chat-input-textarea {*/
+/*    background-color: #40414f;*/
+/*    width: 90%;*/
+/*    border-radius: 5px;*/
+/*    border: none;*/
+/*    margin: 12px;*/
+/*    outline: none;*/
+/*    box-shadow: 0 0px 8px 0 rgba(0, 0, 0, 0.4);*/
+/*    padding: 12px;*/
+/*    color: white;*/
+/*    font-size: 1.25em;*/
+/*}*/
 
 .chatbox {
     flex: 1;
-    background-color: #343541;
+    background-color: white;
     width: 100%;
     position: relative;
 }
 
 .chat-log {
     text-align: left;
-    /*display: flex;*/
-
+    color: black;
 }
 
 .chat-message.chatgpt {
-    background-color: #444654;
+    background-color: rgba(0, 185, 255, 0.3);
 }
 
 .avatar {
@@ -123,20 +123,20 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px; /* Add some padding for breathing space */
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     cursor: pointer;
-    background-color: #363940;
-    border-radius: 5px;
+    background-color: #035EA0;
+    border-radius: 4px;
     transition: background-color 0.2s; /* Add a transition effect for hover */
 }
 
 /* Add this CSS to your existing styles */
 .session-item.selected {
-    background-color: #6f79c5; /* Background color for the selected session */
+    background-color: #FE9B05; /* Background color for the selected session */
 }
 
 .session-item:hover {
-    background-color: #6f79c5; /* Background color for the selected session */
+    background-color: #FE9B05; /* Background color for the selected session */
 }
 
 .session-name {
@@ -157,7 +157,7 @@
     border: none;
     cursor: pointer;
     padding: 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     flex-shrink: 0;
 }
 
@@ -175,21 +175,21 @@
 
 .chat-input-textarea {
     flex: 1;
-    background-color: #40414f;
+    background-color: #035EA0;
     border: none;
     outline: none;
     padding: 12px;
     color: white;
-    font-size: 1.25em;
+    font-size: 1.2em;
 }
 
 .submit-button {
     color: white;
     border: none;
     cursor: pointer;
-    padding: 8px 12px;
+    padding: 9px 12px;
     font-size: 1.5em;
-    background-color: #444654;
+    background-color: #035EA0;
 }
 
 .submit-button:hover {
