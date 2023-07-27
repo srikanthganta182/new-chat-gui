@@ -1,10 +1,11 @@
 import React, {FC, FormEvent, useState} from "react";
 import config from "../config";
 import axios from "axios";
+import {Card} from "../App";
 
 // ChatForm component
 interface ChatFormProps {
-    addToChatLog: (text: string, is_reply: boolean) => void;
+    addToChatLog: (text: string, is_reply: boolean, card: Card | null) => void;
     sessionId: string;
 }
 
@@ -13,12 +14,12 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        addToChatLog(text, false);
+        addToChatLog(text, false, null);
         setText("");
 
         const url = config.backend.path + "session/" + sessionId;
         const reply = await axios.post(url, {text: text});
-        addToChatLog(reply.data.text, true);
+        addToChatLog(reply.data.text, true, reply.data.card);
     };
 
     return (

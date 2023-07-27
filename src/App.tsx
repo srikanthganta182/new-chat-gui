@@ -6,14 +6,13 @@ import SessionList from './components/SessionList';
 import ChatForm from './components/ChatForm';
 import ChatLog from './components/ChatLog';
 
-// App component
 function App() {
     const [sessionId, setSessionId] = useState<string>('');
     const [sessionListReload, setSessionListReload] = useState<number>(0);
-    const [chatLog, setChatLog] = useState<Array<{ text: string; is_reply: boolean }>>([]);
+    const [chatLog, setChatLog] = useState<Array<Chat>>([]);
 
-    const addToChatLog = (text: string, is_reply: boolean) => {
-        setChatLog((prevChatLog) => [...prevChatLog, {text: text, is_reply: is_reply}]);
+    const addToChatLog = (text: string, is_reply: boolean, card: Card | null) => {
+        setChatLog((prevChatLog) => [...prevChatLog, {text: text, is_reply: is_reply, card: card}]);
     };
 
     const renderSessionList = () => {
@@ -40,4 +39,20 @@ function App() {
     );
 }
 
+export interface Card {
+    "title": string,
+    "timestamp": Date,
+    "url": string,
+    "img": string,
+    "src": string
+}
+
+export interface Chat {
+    text: string;
+    is_reply: boolean;
+    card: Card | null;
+}
+
+
 export default App;
+

@@ -4,11 +4,7 @@ import axios from "axios";
 
 import ixordocsLogo from '../logos/ixordocs-logo.png';
 import clearfactsLogo from '../logos/clearfacts-logo.png';
-
-interface Chat {
-    text: string;
-    is_reply: boolean;
-}
+import {Chat} from "../App";
 
 interface ChatLogProps {
     chatLog: Chat[];
