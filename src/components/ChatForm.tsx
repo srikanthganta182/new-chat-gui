@@ -30,7 +30,6 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
                     type="text"
                     value={text}
                     onChange={(event) => setText(event.target.value)}
-                    placeholder="Type your message..."
                 />
                 <button type="submit" className="submit-button">
                     <i className="fas fa-paper-plane"></i>

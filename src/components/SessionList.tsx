@@ -1,6 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 import config from '../config';
 import axios from 'axios';
+import {BsTrash} from "react-icons/bs";
 
 interface SessionListProps {
     sessionListReload: number;
@@ -57,8 +58,9 @@ const SessionList: FC<SessionListProps> = ({
                     }}
                 >
                     <button className="session-name">{session.session_name}</button>
-                    <button onClick={() => deleteSession(session.session_id)} className="delete-button">
-                        X
+                    <button onClick={() => deleteSession(session.session_id)}
+                            className={`delete-button ${sessionId === session.session_id ? 'selected' : ''}`}>
+                        <BsTrash/>
                     </button>
                 </div>
             ))}
