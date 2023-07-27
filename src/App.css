@@ -165,6 +165,38 @@
     color: white;
 }
 
+/* Add this CSS to your existing styles */
+.chat-input-wrapper {
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.chat-input-textarea {
+    flex: 1;
+    background-color: #40414f;
+    border: none;
+    outline: none;
+    padding: 12px;
+    color: white;
+    font-size: 1.25em;
+}
+
+.submit-button {
+    color: white;
+    background-color: #6f79c5;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    font-size: 1.5em;
+}
+
+.submit-button:hover {
+    background-color: #444654;
+}
+
+
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;

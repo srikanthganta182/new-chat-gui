@@ -1,4 +1,4 @@
-import React, {FC, FormEvent, useState} from 'react';
+import React, {FC, FormEvent, useState} from "react";
 import config from "../config";
 import axios from "axios";
 
@@ -16,16 +16,25 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
         addToChatLog(text, false);
         setText("");
 
-        const url = config.backend.path + 'session/' + sessionId;
+        const url = config.backend.path + "session/" + sessionId;
         const reply = await axios.post(url, {text: text});
         addToChatLog(reply.data.text, true);
     };
 
     return (
         <form className="chat-input-holder" onSubmit={handleSubmit}>
-            <input className="chat-input-textarea" type="text" value={text}
-                   onChange={(event) => setText(event.target.value)}/>
-            <button type={"submit"}>SUBMIT</button>
+            <div className="chat-input-wrapper">
+                <input
+                    className="chat-input-textarea"
+                    type="text"
+                    value={text}
+                    onChange={(event) => setText(event.target.value)}
+                    placeholder="Type your message..."
+                />
+                <button type="submit" className="submit-button">
+                    <i className="fas fa-paper-plane"></i>
+                </button>
+            </div>
         </form>
     );
 };
