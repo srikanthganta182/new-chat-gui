@@ -22,8 +22,9 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input type="text" value={text} onChange={(event) => setText(event.target.value)}/>
+        <form className="chat-input-holder" onSubmit={handleSubmit}>
+            <input className="chat-input-textarea" type="text" value={text}
+                   onChange={(event) => setText(event.target.value)}/>
             <button type={"submit"}>SUBMIT</button>
         </form>
     );

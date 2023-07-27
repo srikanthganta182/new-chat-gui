@@ -26,8 +26,13 @@ const ChatLog: FC<ChatLogProps> = ({chatLog, setChatLog, sessionId}) => {
     }, [sessionId]);
 
     return (
-        <div>
-            {chatLog.map(chat => <p> {chat.text}</p>)}
+        <div className="chat-log">
+            {chatLog.map(chat =>
+                <div className="chat-message">
+                    <div className="message"> {chat.text}</div>
+                    <div className="message"> {chat.text}</div>
+                </div>
+            )}
         </div>
     );
 };
