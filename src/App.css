@@ -130,8 +130,13 @@
     transition: background-color 0.2s; /* Add a transition effect for hover */
 }
 
+/* Add this CSS to your existing styles */
+.session-item.selected {
+    background-color: #6f79c5; /* Background color for the selected session */
+}
+
 .session-item:hover {
-    background-color: #444654; /* Apply the hover effect */
+    background-color: #6f79c5; /* Background color for the selected session */
 }
 
 .session-name {

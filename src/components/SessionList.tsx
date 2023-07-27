@@ -1,6 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
-import config from "../config";
-import axios from "axios";
+import config from '../config';
+import axios from 'axios';
 
 interface SessionListProps {
     sessionListReload: number;
@@ -19,6 +19,7 @@ const SessionList: FC<SessionListProps> = ({
                                                renderSessionList,
                                            }) => {
     const [sessions, setSessions] = useState<Session[]>([]);
+    const [selectedSessionId, setSelectedSessionId] = useState<string>(''); // State variable to store the selected session ID
 
     const fetchSessions = async () => {
         const url = config.backend.path + 'session/customer/' + config.customer.name;
@@ -27,7 +28,7 @@ const SessionList: FC<SessionListProps> = ({
         if (sessions.length > 0) {
             setSessionId(sessions[0].session_id);
         } else {
-            setSessionId("");
+            setSessionId('');
         }
         console.log(sessions);
     };
@@ -50,12 +51,13 @@ const SessionList: FC<SessionListProps> = ({
             {sessions.map((session) => (
                 <div
                     key={session.session_id}
-                    className="session-item"
-                    onClick={() => setSessionId(session.session_id)} // Set onClick to change the session on click
+                    className={`session-item ${selectedSessionId === session.session_id ? 'selected' : ''}`} // Add 'selected' class if it's the selected session
+                    onClick={() => {
+                        setSessionId(session.session_id);
+                        setSelectedSessionId(session.session_id); // Update the selected session ID when clicked
+                    }}
                 >
-                    <button className="session-name">
-                        {session.session_name}
-                    </button>
+                    <button className="session-name">{session.session_name}</button>
                     <button onClick={() => deleteSession(session.session_id)} className="delete-button">
                         X
                     </button>
