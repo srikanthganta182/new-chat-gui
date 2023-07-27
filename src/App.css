@@ -185,15 +185,15 @@
 
 .submit-button {
     color: white;
-    background-color: #6f79c5;
     border: none;
     cursor: pointer;
     padding: 8px 12px;
     font-size: 1.5em;
+    background-color: #444654;
 }
 
 .submit-button:hover {
-    background-color: #444654;
+    background-color: #6f79c5;
 }
 
 

@@ -4,6 +4,7 @@ import axios from 'axios';
 
 interface SessionListProps {
     sessionListReload: number;
+    sessionId: string; // Pass down the sessionId from the parent component
     setSessionId: (sessionId: string) => void;
     renderSessionList: () => void;
 }
@@ -14,12 +15,12 @@ interface Session {
 }
 
 const SessionList: FC<SessionListProps> = ({
-                                               sessionListReload: sessionListReload,
+                                               sessionListReload,
+                                               sessionId, // Receive the sessionId from the parent component
                                                setSessionId,
                                                renderSessionList,
                                            }) => {
     const [sessions, setSessions] = useState<Session[]>([]);
-    const [selectedSessionId, setSelectedSessionId] = useState<string>(''); // State variable to store the selected session ID
 
     const fetchSessions = async () => {
         const url = config.backend.path + 'session/customer/' + config.customer.name;
@@ -34,9 +35,8 @@ const SessionList: FC<SessionListProps> = ({
     };
 
     useEffect(() => {
-        return () => {
-            fetchSessions();
-        };
+        fetchSessions(); // Fetch sessions on component mount
+        // Remove the return statement to prevent calling fetchSessions on unmount
     }, [sessionListReload]);
 
     const deleteSession = async (sessionId: string) => {
@@ -51,10 +51,9 @@ const SessionList: FC<SessionListProps> = ({
             {sessions.map((session) => (
                 <div
                     key={session.session_id}
-                    className={`session-item ${selectedSessionId === session.session_id ? 'selected' : ''}`} // Add 'selected' class if it's the selected session
+                    className={`session-item ${sessionId === session.session_id ? 'selected' : ''}`} // Add 'selected' class if it's the selected session
                     onClick={() => {
                         setSessionId(session.session_id);
-                        setSelectedSessionId(session.session_id); // Update the selected session ID when clicked
                     }}
                 >
                     <button className="session-name">{session.session_name}</button>
