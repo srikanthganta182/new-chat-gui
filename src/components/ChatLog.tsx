@@ -2,9 +2,12 @@ import React, {FC, useEffect} from 'react';
 import config from "../config";
 import axios from "axios";
 
+import ixordocsLogo from '../logos/ixordocs-logo.png';
+import clearfactsLogo from '../logos/clearfacts-logo.png';
+
 interface Chat {
     text: string;
-    isReply: boolean;
+    is_reply: boolean;
 }
 
 interface ChatLogProps {
@@ -28,9 +31,20 @@ const ChatLog: FC<ChatLogProps> = ({chatLog, setChatLog, sessionId}) => {
     return (
         <div className="chat-log">
             {chatLog.map(chat =>
-                <div className="chat-message">
-                    <div className="message"> {chat.text}</div>
-                    <div className="message"> {chat.text}</div>
+                <div className={`chat-message ${chat.is_reply ? 'chatgpt' : ''}`}>
+                    <div className="chat-message-center">
+                        {/* Conditionally render the avatar */}
+                        {chat.is_reply ? (
+                            <div className="avatar">
+                                <img src={ixordocsLogo} alt="Backend Logo"/>
+                            </div>
+                        ) : (
+                            <div className="avatar">
+                                <img src={clearfactsLogo} alt="Customer Logo"/>
+                            </div>
+                        )}
+                        <div className="message"> {chat.text}</div>
+                    </div>
                 </div>
             )}
         </div>

@@ -72,6 +72,48 @@
     position: relative;
 }
 
+.chat-log {
+    text-align: left;
+    /*display: flex;*/
+
+}
+
+.chat-message.chatgpt {
+    background-color: #444654;
+}
+
+.avatar {
+    background: white;
+    border-radius: 8px; /* Adjust the border-radius as needed for more or less rounded edges */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures the image fills the square container without stretching */
+}
+
+.message {
+    padding-left: 10px;
+    max-width: 80%; /* Adjust the max-width as needed */
+    word-wrap: break-word; /* Allow the text to wrap within the container */
+}
+
+.chat-message-center {
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .App-logo {
         animation: App-logo-spin infinite 20s linear;

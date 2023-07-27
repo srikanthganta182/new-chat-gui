@@ -4,7 +4,7 @@ import axios from "axios";
 
 // ChatForm component
 interface ChatFormProps {
-    addToChatLog: (text: string, isReply: boolean) => void;
+    addToChatLog: (text: string, is_reply: boolean) => void;
     sessionId: string;
 }
 

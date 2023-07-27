@@ -10,10 +10,10 @@ import ChatLog from "./components/ChatLog";
 function App() {
     const [sessionId, setSessionId] = useState<string>("");
     const [sessionListReload, setSessionListReload] = useState<number>(0);
-    const [chatLog, setChatLog] = useState<Array<{ text: string, isReply: boolean }>>([]);
+    const [chatLog, setChatLog] = useState<Array<{ text: string, is_reply: boolean }>>([]);
 
-    const addToChatLog = (text: string, isReply: boolean) => {
-        setChatLog(prevChatLog => [...prevChatLog, {text: text, isReply: isReply}]);
+    const addToChatLog = (text: string, is_reply: boolean) => {
+        setChatLog(prevChatLog => [...prevChatLog, {text: text, is_reply: is_reply}]);
     };
 
     const renderSessionList = () => {
