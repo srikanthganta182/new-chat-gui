@@ -3,7 +3,7 @@ import config from "../config";
 import axios from "axios";
 
 import ixordocsLogo from '../logos/ixordocs-logo.png';
-import clearfactsLogo from '../logos/clearfacts-logo.png';
+import userLogo from '../logos/people.png';
 import {Chat} from "../App";
 
 interface ChatLogProps {
@@ -36,7 +36,7 @@ const ChatLog: FC<ChatLogProps> = ({chatLog, setChatLog, sessionId}) => {
                             </div>
                         ) : (
                             <div className="avatar">
-                                <img src={clearfactsLogo} alt="Customer Logo"/>
+                                <img src={userLogo} alt="Customer Logo"/>
                             </div>
                         )}
                         <div className="message"> {chat.text}</div>

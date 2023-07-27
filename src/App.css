@@ -100,7 +100,7 @@
     padding: 12px;
     display: flex;
     align-items: center;
-    max-width: 1000px;
+    max-width: 1030px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -159,6 +159,11 @@
     flex-shrink: 0;
 }
 
+.delete-button:hover {
+    color: white;
+}
+
+
 .delete-button.selected {
     color: white;
 }
@@ -167,9 +172,6 @@
     color: #ff6666;
 }
 
-.delete-button:hover {
-    color: white;
-}
 
 /* Add this CSS to your existing styles */
 .chat-input-wrapper {
@@ -177,9 +179,10 @@
     align-items: center;
     border-radius: 50px;
     overflow: hidden;
-    width: 100%;
+    width: 70%; /* adjust this as needed */
+    margin-left: auto;
+    margin-right: auto;
 }
-
 
 .chat-input-textarea {
     flex: 1;
