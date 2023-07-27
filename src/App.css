@@ -175,8 +175,9 @@
 .chat-input-wrapper {
     display: flex;
     align-items: center;
-    border-radius: 5px;
+    border-radius: 50px;
     overflow: hidden;
+    width: 100%;
 }
 
 
@@ -200,7 +201,7 @@
 }
 
 .submit-button:hover {
-    background-color: #6f79c5;
+    background-color: #FE9B05FF;
 }
 
 
