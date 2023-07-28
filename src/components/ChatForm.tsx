@@ -1,11 +1,11 @@
 import React, {FC, FormEvent, useState} from "react";
 import config from "../config";
 import axios from "axios";
-import {Card} from "../App";
+import {Reference} from "../App";
 
 // ChatForm component
 interface ChatFormProps {
-    addToChatLog: (text: string, is_reply: boolean, card: Card | null) => void;
+    addToChatLog: (text: string, is_reply: boolean, reference: Reference | null) => void;
     sessionId: string;
 }
 
@@ -19,7 +19,7 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
 
         const url = config.backend.path + "session/" + sessionId;
         const reply = await axios.post(url, {text: text});
-        addToChatLog(reply.data.text, true, reply.data.card);
+        addToChatLog(reply.data.text, true, reply.data.reference);
     };
 
     return (

@@ -11,8 +11,8 @@ function App() {
     const [sessionListReload, setSessionListReload] = useState<number>(0);
     const [chatLog, setChatLog] = useState<Array<Chat>>([]);
 
-    const addToChatLog = (text: string, is_reply: boolean, card: Card | null) => {
-        setChatLog((prevChatLog) => [...prevChatLog, {text: text, is_reply: is_reply, card: card}]);
+    const addToChatLog = (text: string, is_reply: boolean, reference: Reference | null) => {
+        setChatLog((prevChatLog) => [...prevChatLog, {text: text, is_reply: is_reply, reference: reference}]);
     };
 
     const renderSessionList = () => {
@@ -39,7 +39,7 @@ function App() {
     );
 }
 
-export interface Card {
+export interface Reference {
     "title": string,
     "timestamp": Date,
     "url": string,
@@ -50,7 +50,7 @@ export interface Card {
 export interface Chat {
     text: string;
     is_reply: boolean;
-    card: Card | null;
+    reference: Reference | null;
 }
 
 
