@@ -70,8 +70,8 @@ const renderChatMessage = (chat: Chat) => (
                             <a href={chat.reference.url} target="_blank" rel="noopener noreferrer">
                                 <Card
                                     hoverable
-                                    style={{ width: 320, border: 'none' }}  // Increase width and remove border
-                                    bodyStyle={{ padding: '12px' }}  // Adjust padding as needed
+                                    style={{ width: 480, border: 'none' }}  // Increase width and remove border
+                                    bodyStyle={{ padding: '5px' }}  // Adjust padding as needed
                                 >
                                     <div style={{width: '100%', height: '0', paddingBottom: '75%', position: 'relative'}}>
                                         <img alt={chat.reference.title} src={chat.reference.img} style={{width: '100%', height: 'auto', position: 'absolute', top: '0', left: '0'}} />

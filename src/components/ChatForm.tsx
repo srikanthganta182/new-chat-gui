@@ -30,6 +30,7 @@ const ChatForm: FC<ChatFormProps> = ({ addToChatLog, sessionId }) => {
         const reply = await axios.post(url, { input: text });
 
         chat.assistant = reply.data.assistant; // update the assistant message
+        chat.reference = reply.data.reference;
 
         addToChatLog(chat, true); // Replace the last chat message with the complete chat (user message and assistant reply)
 
