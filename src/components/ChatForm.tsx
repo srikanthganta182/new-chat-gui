@@ -14,22 +14,22 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        const fakeChat: Chat = {
+        const userChat: Chat = {
             user: text,
-            assistant: "",
+            assistant: "", // Leave this empty for now
             reference: null,
             created_at: new Date()
         };
 
-        addToChatLog(fakeChat);
-        setText("");
+        addToChatLog(userChat); // Add the user's chat to the log immediately
+        setText(""); // Clear the input field
 
         const url = config.backend.path + "session/" + sessionId;
         const reply = await axios.post(url, {input: text});
-        fakeChat.assistant = reply.data.text; // update the assistant's response
-        addToChatLog(fakeChat); // update the chat log again with the complete chat
-    };
 
+        // Now update the last user's chat with the assistant's reply
+        addToChatLog({...userChat, assistant: reply.data.text});
+    };
 
     return (
         <form className="chat-input-holder" onSubmit={handleSubmit}>

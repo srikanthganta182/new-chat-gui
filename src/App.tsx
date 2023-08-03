@@ -14,7 +14,7 @@ function App() {
     const addToChatLog = (chat: Chat) => {
         setChatLog((prevChatLog) => {
             const existingChatIndex = prevChatLog.findIndex(
-                (c) => c.user === chat.user
+                (c) => c.user === chat.user && c.assistant === ""
             );
 
             if (existingChatIndex > -1) {
@@ -28,7 +28,6 @@ function App() {
             return [...prevChatLog, chat];
         });
     };
-
 
     const renderSessionList = () => {
         setSessionListReload(sessionListReload + 1);
@@ -63,16 +62,10 @@ export interface Reference {
 }
 
 export interface Chat {
-
     user: string;
-
     assistant: string;
-
     reference: any;
-
     created_at: Date;
 }
 
-
 export default App;
-
