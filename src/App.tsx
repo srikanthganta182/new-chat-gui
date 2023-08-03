@@ -12,8 +12,23 @@ function App() {
     const [chatLog, setChatLog] = useState<Array<Chat>>([]);
 
     const addToChatLog = (chat: Chat) => {
-        setChatLog((prevChatLog) => [...prevChatLog, chat]);
+        setChatLog((prevChatLog) => {
+            const existingChatIndex = prevChatLog.findIndex(
+                (c) => c.user === chat.user
+            );
+
+            if (existingChatIndex > -1) {
+                // Chat already exists, so update it
+                const updatedChatLog = [...prevChatLog];
+                updatedChatLog[existingChatIndex] = chat;
+                return updatedChatLog;
+            }
+
+            // Chat doesn't exist, so add it
+            return [...prevChatLog, chat];
+        });
     };
+
 
     const renderSessionList = () => {
         setSessionListReload(sessionListReload + 1);

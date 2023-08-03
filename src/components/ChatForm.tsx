@@ -4,31 +4,32 @@ import axios from "axios";
 import {Chat} from "../App";
 
 interface ChatFormProps {
-    setChatLog: (chatLog: Chat[]) => void;
+    addToChatLog: (chat: Chat) => void;
     sessionId: string;
 }
 
-const ChatForm: FC<ChatFormProps> = ({setChatLog, sessionId}) => {
+const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
     const [text, setText] = useState("");
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        const fakeChat = {
+        const fakeChat: Chat = {
             user: text,
-            assistant: null,
+            assistant: "",
             reference: null,
-            created_at: null
+            created_at: new Date()
         };
 
-        setChatLog((prevChatLog) => [...prevChatLog, fakeChat]);
-
+        addToChatLog(fakeChat);
         setText("");
 
         const url = config.backend.path + "session/" + sessionId;
-        const reply = await axios.post(url, {text: text});
-        addToChatLog(reply.data.text, true, reply.data.reference);
+        const reply = await axios.post(url, {input: text});
+        fakeChat.assistant = reply.data.text; // update the assistant's response
+        addToChatLog(fakeChat); // update the chat log again with the complete chat
     };
+
 
     return (
         <form className="chat-input-holder" onSubmit={handleSubmit}>

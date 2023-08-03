@@ -15,7 +15,6 @@ interface ChatLogProps {
 const ChatLog: FC<ChatLogProps> = ({chatLog, setChatLog, sessionId}) => {
     const fetchLogs = async () => {
         const url = config.backend.path + 'session/' + sessionId;
-        // todo
         let logs = (await axios.get<Chat[]>(url)).data;
         logs[0].reference = {
             title: "Boekhoudapp Dexxter is Antwerpse \u2018Beloftevolle KMO van het jaar\u2019",
@@ -37,21 +36,26 @@ const ChatLog: FC<ChatLogProps> = ({chatLog, setChatLog, sessionId}) => {
     return (
         <div className="chat-log">
             {chatLog.map(chat =>
-                <div className={`chat-message ${chat.is_reply ? 'chatgpt' : ''}`}>
-                    <div className="chat-message-center">
-                        {/* Conditionally render the avatar */}
-                        {chat.is_reply ? (
-                            <div className="avatar">
-                                <img src={ixordocsLogo} alt="Backend Logo"/>
-                            </div>
-                        ) : (
+                <>
+                    <div className="chat-message">
+                        <div className="chat-message-center">
                             <div className="avatar">
                                 <img src={userLogo} alt="Customer Logo"/>
                             </div>
-                        )}
-                        <div className="message"> {chat.text}</div>
+                            <div className="message"> {chat.user}</div>
+                        </div>
                     </div>
-                </div>
+                    {chat.assistant && (
+                        <div className="chat-message chatgpt">
+                            <div className="chat-message-center">
+                                <div className="avatar">
+                                    <img src={ixordocsLogo} alt="Backend Logo"/>
+                                </div>
+                                <div className="message"> {chat.assistant}</div>
+                            </div>
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );
