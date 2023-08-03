@@ -1,5 +1,3 @@
-// App.tsx
-
 import React, {useState} from 'react';
 import './App.css';
 import './normal.css';
@@ -13,11 +11,15 @@ function App() {
     const [sessionListReload, setSessionListReload] = useState<number>(0);
     const [chatLog, setChatLog] = useState<Array<Chat>>([]);
 
-
-    const addToChatLog = (chat: Chat) => {
-        setChatLog(prevChatLog => [...prevChatLog, chat]);
+    const addToChatLog = (chat: Chat, replaceLastMessage: boolean = false) => {
+        setChatLog(prevChatLog => {
+            if (replaceLastMessage) {
+                return prevChatLog.map(c => c.id === chat.id ? chat : c); // replace the chat with the same id
+            } else {
+                return [...prevChatLog, chat]; // add a new chat
+            }
+        });
     };
-
 
     const renderSessionList = () => {
         setSessionListReload(sessionListReload + 1);
@@ -52,6 +54,7 @@ export interface Reference {
 }
 
 export interface Chat {
+    id: number;
     user: string;
     assistant: string;
     reference: any;
