@@ -32,7 +32,7 @@ const ChatLog: FC<ChatLogProps> = ({ chatLog, setChatLog, sessionId }) => {
             //     }
             // }
 
-            console.log(logs);
+            console.log("logs:", logs);
             setChatLog(logs);
         };
 
@@ -77,7 +77,8 @@ const renderChatMessage = (chat: Chat) => (
                                         <img alt={chat.reference.title} src={chat.reference.img} style={{width: '100%', height: 'auto', position: 'absolute', top: '0', left: '0'}} />
                                     </div>
                                     <Card.Meta title={chat.reference.title} description={chat.reference.src} />
-                                    <p>{chat.reference.timestamp.toLocaleDateString()}</p>
+                                    <p>{new Date(chat.reference.timestamp).toLocaleDateString()}</p>
+
                                 </Card>
                             </a>
                         )}
