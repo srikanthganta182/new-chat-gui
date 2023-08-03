@@ -1,3 +1,5 @@
+// ChatLog.tsx
+
 import React, {FC, useEffect} from 'react';
 import config from "../config";
 import axios from "axios";
@@ -39,30 +41,32 @@ const ChatLog: FC<ChatLogProps> = ({ chatLog, setChatLog, sessionId }) => {
 
     return (
         <div className="chat-log">
-            {chatLog.map(chat =>
-                <>
-                    <div className="chat-message">
-                        <div className="chat-message-center">
-                            <div className="avatar">
-                                <img src={userLogo} alt="Customer Logo" />
-                            </div>
-                            <div className="message"> {chat.user}</div>
-                        </div>
-                    </div>
-                    {chat.assistant && (
-                        <div className="chat-message chatgpt">
-                            <div className="chat-message-center">
-                                <div className="avatar">
-                                    <img src={ixordocsLogo} alt="Backend Logo" />
-                                </div>
-                                <div className="message"> {chat.assistant}</div>
-                            </div>
-                        </div>
-                    )}
-                </>
-            )}
+            {chatLog.map(chat => renderChatMessage(chat))}
         </div>
     );
 };
+
+const renderChatMessage = (chat: Chat) => (
+    <>
+        <div className="chat-message">
+            <div className="chat-message-center">
+                <div className="avatar">
+                    <img src={userLogo} alt="Customer Logo" />
+                </div>
+                <div className="message"> {chat.user}</div>
+            </div>
+        </div>
+        {chat.assistant && (
+            <div className="chat-message chatgpt">
+                <div className="chat-message-center">
+                    <div className="avatar">
+                        <img src={ixordocsLogo} alt="Backend Logo" />
+                    </div>
+                    <div className="message"> {chat.assistant}</div>
+                </div>
+            </div>
+        )}
+    </>
+);
 
 export default ChatLog;

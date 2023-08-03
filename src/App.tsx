@@ -1,3 +1,5 @@
+// App.tsx
+
 import React, {useState} from 'react';
 import './App.css';
 import './normal.css';
@@ -11,9 +13,11 @@ function App() {
     const [sessionListReload, setSessionListReload] = useState<number>(0);
     const [chatLog, setChatLog] = useState<Array<Chat>>([]);
 
+
     const addToChatLog = (chat: Chat) => {
         setChatLog(prevChatLog => [...prevChatLog, chat]);
     };
+
 
     const renderSessionList = () => {
         setSessionListReload(sessionListReload + 1);
