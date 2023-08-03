@@ -8,7 +8,7 @@ interface ChatFormProps {
     sessionId: string;
 }
 
-const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
+const ChatForm: FC<ChatFormProps> = ({ addToChatLog, sessionId }) => {
     const [text, setText] = useState("");
 
     const handleSubmit = async (event: FormEvent) => {
@@ -16,19 +16,24 @@ const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
 
         const userChat: Chat = {
             user: text,
-            assistant: "", // Leave this empty for now
+            assistant: "", // initial empty assistant message
             reference: null,
             created_at: new Date()
         };
-
-        addToChatLog(userChat); // Add the user's chat to the log immediately
-        setText(""); // Clear the input field
+        addToChatLog(userChat); // Add user message to chat log as soon as it's sent
 
         const url = config.backend.path + "session/" + sessionId;
-        const reply = await axios.post(url, {input: text});
+        const reply = await axios.post(url, { input: text });
 
-        // Now update the last user's chat with the assistant's reply
-        addToChatLog({...userChat, assistant: reply.data.text});
+        const assistantChat: Chat = {
+            ...userChat, // copy all properties from userChat
+            assistant: reply.data.text, // update the assistant message
+            created_at: new Date() // update the time with the assistant's response time
+        };
+
+        addToChatLog(assistantChat); // Update the chat log with the assistant's reply when it comes in
+
+        setText("");
     };
 
     return (
