@@ -240,3 +240,36 @@
         transform: rotate(360deg);
     }
 }
+
+.card-container {
+    width: 480px;
+    border: none;
+    padding: 4px !important; /* Use !important to override Ant Design styles. */
+    background: white; /* To remove the white background */
+}
+
+.card-container .ant-card-body {
+    padding: 0 !important; /* Use !important to override Ant Design styles. */
+}
+
+
+.card-body {
+    padding: 1px;
+}
+
+.card-img-container {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%; /* This percentage gives an aspect ratio of 16:9. Adjust accordingly for different aspect ratios. */
+    overflow: hidden; /* This will ensure the image does not overflow */
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover; /* Ensures the image covers the entire div without distortion */
+}
+

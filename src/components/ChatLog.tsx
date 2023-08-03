@@ -70,15 +70,15 @@ const renderChatMessage = (chat: Chat) => (
                             <a href={chat.reference.url} target="_blank" rel="noopener noreferrer">
                                 <Card
                                     hoverable
-                                    style={{ width: 480, border: 'none' }}  // Increase width and remove border
-                                    bodyStyle={{ padding: '5px' }}  // Adjust padding as needed
+                                    className="card-container"
                                 >
-                                    <div style={{width: '100%', height: '0', paddingBottom: '75%', position: 'relative'}}>
-                                        <img alt={chat.reference.title} src={chat.reference.img} style={{width: '100%', height: 'auto', position: 'absolute', top: '0', left: '0'}} />
+                                    <div className="card-body">
+                                        <div className="card-img-container">
+                                            <img alt={chat.reference.title} src={chat.reference.img} className="card-img" />
+                                        </div>
+                                        <Card.Meta title={chat.reference.title} />
+                                        <p>{new Date(chat.reference.timestamp).toLocaleDateString()}</p>
                                     </div>
-                                    <Card.Meta title={chat.reference.title} description={chat.reference.src} />
-                                    <p>{new Date(chat.reference.timestamp).toLocaleDateString()}</p>
-
                                 </Card>
                             </a>
                         )}
