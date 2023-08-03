@@ -67,7 +67,10 @@
     text-align: left;
     color: black;
     font-family: Work Sans, sans-serif;
+    max-height: 90vh; /* You can adjust this as per your requirement */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
+
 
 .chat-message.chatgpt {
     background-color: rgba(0, 185, 255, 0.3);
