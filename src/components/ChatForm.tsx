@@ -1,20 +1,28 @@
 import React, {FC, FormEvent, useState} from "react";
 import config from "../config";
 import axios from "axios";
-import {Reference} from "../App";
+import {Chat} from "../App";
 
-// ChatForm component
 interface ChatFormProps {
-    addToChatLog: (text: string, is_reply: boolean, reference: Reference | null) => void;
+    setChatLog: (chatLog: Chat[]) => void;
     sessionId: string;
 }
 
-const ChatForm: FC<ChatFormProps> = ({addToChatLog, sessionId}) => {
+const ChatForm: FC<ChatFormProps> = ({setChatLog, sessionId}) => {
     const [text, setText] = useState("");
 
     const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        addToChatLog(text, false, null);
+
+        const fakeChat = {
+            user: text,
+            assistant: null,
+            reference: null,
+            created_at: null
+        };
+
+        setChatLog((prevChatLog) => [...prevChatLog, fakeChat]);
+
         setText("");
 
         const url = config.backend.path + "session/" + sessionId;

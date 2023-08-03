@@ -11,8 +11,8 @@ function App() {
     const [sessionListReload, setSessionListReload] = useState<number>(0);
     const [chatLog, setChatLog] = useState<Array<Chat>>([]);
 
-    const addToChatLog = (text: string, is_reply: boolean, reference: Reference | null) => {
-        setChatLog((prevChatLog) => [...prevChatLog, {text: text, is_reply: is_reply, reference: reference}]);
+    const addToChatLog = (chat: Chat) => {
+        setChatLog((prevChatLog) => [...prevChatLog, chat]);
     };
 
     const renderSessionList = () => {
@@ -48,9 +48,14 @@ export interface Reference {
 }
 
 export interface Chat {
-    text: string;
-    is_reply: boolean;
-    reference: Reference | null;
+
+    user: string;
+
+    assistant: string;
+
+    reference: any;
+
+    created_at: Date;
 }
 
 
