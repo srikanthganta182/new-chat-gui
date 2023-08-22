@@ -26,7 +26,7 @@ const ChatForm: FC<ChatFormProps> = ({ addToChatLog, sessionId }) => {
 
         setText("");
 
-        const url = config.backend.path + "session/" + sessionId;
+        const url = config.backend.path + sessionId;
         const reply = await axios.post(url, { input: text });
 
         chat.assistant = reply.data.assistant; // update the assistant message

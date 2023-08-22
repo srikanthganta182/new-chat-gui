@@ -19,18 +19,8 @@ const ChatLog: FC<ChatLogProps> = ({ chatLog, setChatLog, sessionId }) => {
 
     useEffect(() => {
         const fetchLogs = async () => {
-            const url = config.backend.path + 'session/' + sessionId;
+            const url = config.backend.path + sessionId;
             let logs = (await axios.get<Chat[]>(url)).data;
-
-            // if (logs && logs.length > 0 && logs[0]) {
-            //     logs[0].reference = {
-            //         title: "Boekhoudapp Dexxter is Antwerpse \u2018Beloftevolle KMO van het jaar\u2019",
-            //         timestamp: new Date("2022-11-14"),
-            //         url: "https://dexxter.be/beloftevolle-kmo-van-het-jaar/",
-            //         img: "https://dexxter.be/wp-content/uploads/2022/11/DSC_2774-1024x683.jpg",
-            //         src: "dexxter"
-            //     }
-            // }
 
             console.log("logs:", logs);
             setChatLog(logs);

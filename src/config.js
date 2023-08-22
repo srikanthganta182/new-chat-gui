@@ -1,6 +1,6 @@
 const config = {
     backend: {
-        path: 'http://localhost:8081/',
+        path: 'http://localhost:8081/chat/',
         logo: '/logos/ixordocs-logo.png'
     },
     customer: {
