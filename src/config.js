@@ -1,7 +1,8 @@
 const config = {
     backend: {
         path: 'http://localhost:8081/chat/',
-        logo: "https://uploads-ssl.webflow.com/5cbf072ecf61ecca7a022818/5cbf13f4ae2b884a00089343_ixordocs_logo-p-500.png"
+        logo: "https://uploads-ssl.webflow.com/5cbf072ecf61ecca7a022818/5cbf13f4ae2b884a00089343_ixordocs_logo-p-500.png",
+        sessionLength: 4
     },
     customer: {
         name: 'test',

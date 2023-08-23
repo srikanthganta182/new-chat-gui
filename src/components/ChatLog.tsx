@@ -4,9 +4,6 @@ import React, {FC, useEffect} from 'react';
 import config from "../config";
 import axios from "axios";
 import { Card } from "antd";
-
-import ixordocsLogo from "../logos/ixordocs-logo.png";
-import userLogo from "../logos/people.png";
 import { Chat } from "../App";
 
 interface ChatLogProps {
@@ -18,8 +15,17 @@ interface ChatLogProps {
 const ChatLog: FC<ChatLogProps> = ({ chatLog, setChatLog, sessionId }) => {
   useEffect(() => {
     const fetchLogs = async () => {
-      const url = config.backend.path + sessionId;
-      let logs = (await axios.get<Chat[]>(url)).data;
+      const url = process.env.REACT_APP_BACKEND_URL + sessionId;
+      // const url = "http://localhost:8081/chat/" + sessionId;
+
+      let logs = (
+        await axios.get<Chat[]>(url, {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": process.env.APIKEY,
+          },
+        })
+      ).data;
 
       console.log("logs:", logs);
       setChatLog(logs);

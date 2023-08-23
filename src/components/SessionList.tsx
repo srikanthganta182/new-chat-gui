@@ -24,8 +24,18 @@ const SessionList: FC<SessionListProps> = ({
   const [sessions, setSessions] = useState<Session[]>([]);
 
   const fetchSessions = async () => {
-    const url = config.backend.path + "customer/" + config.customer.name;
-    const fetchedSessions = (await axios.get<Session[]>(url)).data;
+    const url =
+      process.env.REACT_APP_BACKEND_URL + "customer/" + config.customer.name;
+    // const url = "http://localhost:8081/chat/" + "customer/" + config.customer.name;
+
+    const fetchedSessions = (
+      await axios.get<Session[]>(url, {
+        headers: {
+          "Content-Type": "application/json",
+          "X-Api-Key": process.env.APIKEY,
+        },
+      })
+    ).data;
 
     localStorage.setItem("sessions", JSON.stringify(fetchedSessions)); // Save to local storage after initial fetch
     setSessions(fetchedSessions);

@@ -15,13 +15,23 @@ interface SessionResponse {
 
 const CreateSession: FC<CreateSessionProps> = ({ update }) => {
   const createNewSession = async () => {
-    const url = config.backend.path + "create";
+    const url = process.env.REACT_APP_BACKEND_URL + "create";
+    // const url = "http://localhost:8081/chat/" + "create";
 
     try {
       // Make POST request to create a session in the backend
-      const response = await axios.post<SessionResponse>(url, {
-        customer: config.customer.name,
-      });
+      const response = await axios.post<SessionResponse>(
+        url,
+        {
+          customer: config.customer.name,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "X-Api-Key": process.env.REACT_APP_APIKEY,
+          },
+        }
+      );
 
       // Extract the created session from the response
       const newSession = response.data;

@@ -273,3 +273,11 @@
     object-fit: cover; /* Ensures the image covers the entire div without distortion */
 }
 
+.session-limit-text {
+    color: #FF0000; /* red color, you can change as per your preference */
+    font-size: 1.5em;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+}
